@@ -1,1 +1,2 @@
-export const APP_NAME = 'task-list' as const;
+export * from './common';
+export * from './task';

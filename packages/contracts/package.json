@@ -7,9 +7,15 @@
     ".": "./src/index.ts"
   },
   "scripts": {
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest"
   },
   "devDependencies": {
-    "@task-list/tsconfig": "workspace:*"
+    "@task-list/tsconfig": "workspace:*",
+    "vitest": "5.1.0"
+  },
+  "dependencies": {
+    "zod": "4.6.7"
   }
 }
