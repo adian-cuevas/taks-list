@@ -1,0 +1,32 @@
+{
+  "name": "task-list",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "packageManager": "pnpm@11.28.5",
+  "engines": {
+    "node": ">=26"
+  },
+  "scripts": {
+    "prepare": "husky",
+    "dev": "turbo run dev",
+    "build": "turbo run build",
+    "typecheck": "turbo run typecheck",
+    "check": "biome check .",
+    "check:fix": "biome check --write .",
+    "validate": "pnpm check && pnpm typecheck"
+  },
+  "lint-staged": {
+    "*": "biome check --write --no-errors-on-unmatched --files-ignore-unknown=true"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.6.8",
+    "@commitlint/cli": "21.2.4",
+    "@commitlint/config-conventional": "21.2.4",
+    "@typescript/native": "npm:typescript@^7.0.2",
+    "husky": "9.1.7",
+    "lint-staged": "17.6.1",
+    "turbo": "2.11.11",
+    "typescript": "npm:@typescript/typescript6@^6.0.2"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "name": "@task-list/contracts",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@task-list/tsconfig": "workspace:*"
+  }
+}
