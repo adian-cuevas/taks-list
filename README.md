@@ -14,3 +14,9 @@ Node >= 26 y pnpm 11.
 - `pnpm validate`: todo lo anterior.
 
 Decisiones técnicas en `docs/adr/`.
+
+## Problemas conocidos
+
+- **`all predefined address pools have been fully subnetted`** al hacer `pnpm db:up`:
+  una VPN activa ocupa todos los rangos que Docker usa. Copia
+  `compose.override.example.yaml` a `compose.override.yaml`.

@@ -1,0 +1,9 @@
+# Copia a compose.override.yaml si `docker compose up` falla con
+# "all predefined address pools have been fully subnetted".
+# Pasa cuando una VPN enruta todos los rangos privados y Docker no
+# encuentra subredes libres; fijar una a mano lo evita.
+networks:
+  default:
+    ipam:
+      config:
+        - subnet: 10.231.77.0/24

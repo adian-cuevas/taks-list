@@ -14,7 +14,14 @@
     "typecheck": "turbo run typecheck",
     "check": "biome check .",
     "check:fix": "biome check --write .",
-    "validate": "pnpm check && pnpm typecheck"
+    "validate": "pnpm check && pnpm typecheck && pnpm test",
+    "test": "turbo run test",
+    "db:up": "docker compose up -d --wait postgres",
+    "db:down": "docker compose down",
+    "db:generate": "pnpm --filter @task-list/db db:generate",
+    "db:migrate": "pnpm --filter @task-list/db db:migrate",
+    "db:seed": "pnpm --filter @task-list/db db:seed",
+    "db:studio": "pnpm --filter @task-list/db db:studio"
   },
   "lint-staged": {
     "*": "biome check --write --no-errors-on-unmatched --files-ignore-unknown=true"
