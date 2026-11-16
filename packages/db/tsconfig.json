@@ -1,0 +1,5 @@
+{
+  "extends": "@task-list/tsconfig/base.json",
+  "compilerOptions": { "types": ["node"] },
+  "include": ["src", "drizzle.config.ts"]
+}
