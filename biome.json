@@ -23,5 +23,10 @@
     "rules": {
       "preset": "none"
     }
+  },
+  "css": {
+    "parser": {
+      "tailwindDirectives": true
+    }
   }
 }
