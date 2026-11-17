@@ -10,13 +10,17 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@tanstack/react-form": "^1.33.5",
+    "@tanstack/react-query": "^5.107.1",
     "@tanstack/react-router": "^1.170.46",
     "@tanstack/react-router-devtools": "^1.167.3",
     "@task-list/contracts": "workspace:*",
     "react": "19.3.1",
-    "react-dom": "19.3.1"
+    "react-dom": "19.3.1",
+    "zod": "4.6.7"
   },
   "devDependencies": {
+    "@tanstack/react-query-devtools": "^5.107.1",
     "@tanstack/router-plugin": "^1.169.0",
     "@task-list/tsconfig": "workspace:*",
     "@types/node": "26.6.6",
