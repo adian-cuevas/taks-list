@@ -1,6 +1,6 @@
 import { useForm } from '@tanstack/react-form';
 import { useQueryClient } from '@tanstack/react-query';
-import { createFileRoute, Link } from '@tanstack/react-router';
+import { createFileRoute, Link, useNavigate } from '@tanstack/react-router';
 import {
   type Task,
   type TaskPriority,
@@ -8,7 +8,7 @@ import {
   updateTaskSchema,
 } from '@task-list/contracts';
 import { useState } from 'react';
-import { taskKeys, useTask, useUpdateTask } from '../../hooks/tasks/use-tasks';
+import { taskKeys, useDeleteTask, useTask, useUpdateTask } from '../../hooks/tasks/use-tasks';
 import { ApiError } from '../../lib/api/client';
 
 type EditTaskValues = Pick<
@@ -49,7 +49,9 @@ function formatDate(value: string): string {
 
 function TaskDetailPage() {
   const { id } = Route.useParams();
+  const navigate = useNavigate();
   const taskQuery = useTask(id);
+  const deleteTaskMutation = useDeleteTask();
   const [isEditing, setIsEditing] = useState(false);
 
   if (taskQuery.isPending) {
@@ -88,6 +90,26 @@ function TaskDetailPage() {
   }
 
   const task = taskQuery.data;
+
+  async function handleDelete() {
+    const confirmed = window.confirm(
+      `¿Estás seguro de que deseas eliminar la tarea "${task.title}"?`,
+    );
+
+    if (!confirmed) {
+      return;
+    }
+
+    try {
+      await deleteTaskMutation.mutateAsync(id);
+
+      await navigate({
+        to: '/tasks',
+      });
+    } catch {
+      // El error se muestra mediante deleteTaskMutation.isError.
+    }
+  }
 
   if (isEditing) {
     return (
@@ -151,6 +173,22 @@ function TaskDetailPage() {
 
       <button type="button" onClick={() => setIsEditing(true)}>
         Editar tarea
+      </button>
+
+      {deleteTaskMutation.isError && (
+        <p role="alert">
+          {deleteTaskMutation.error instanceof ApiError
+            ? deleteTaskMutation.error.message
+            : 'No fue posible eliminar la tarea.'}
+        </p>
+      )}
+
+      <button
+        type="button"
+        onClick={() => void handleDelete()}
+        disabled={deleteTaskMutation.isPending}
+      >
+        {deleteTaskMutation.isPending ? 'Eliminando...' : 'Eliminar tarea'}
       </button>
     </section>
   );
